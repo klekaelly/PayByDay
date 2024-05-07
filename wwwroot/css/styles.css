@@ -1,0 +1,157 @@
+/* Reset and Box Model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root Font and Color Definitions */
+:root {
+    --sidebar-bg-color: #343a40;
+    --sidebar-text-color: #fff;
+    --sidebar-hover-bg-color: #495057;
+    --link-active-bg-color: #007bff;
+    --sidebar-link-color: #9da0a4;
+    --sidebar-hover-link-color: #dcdde1;
+}
+
+/* Basic HTML and Body Styles */
+html, body {
+    height: 100%;
+    font-size: 14px; /* Default font size */
+    position: relative;
+    min-height: 100%;
+}
+
+/* Responsive Font Size Adjustment */
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Main Layout Containers */
+.container-fluid {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+#main {
+    overflow-y: auto;
+}
+
+/* Sidebar Specific Styles */
+#sidebar {
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
+    box-sizing: border-box;
+    height: 100vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column; /* Ensures flex layout to push links to the bottom */
+    position: relative; /* Ensures the resizer handle can be absolutely positioned */
+    resize: horizontal; /* Allows horizontal resizing */
+    overflow: auto; /* Keeps the content scrollable if it overflows */
+    max-width: 100%; /* Limits resizing to not exceed the viewport width */
+    min-width: 150px; /* Minimum width to ensure usability */
+}
+
+#sidebar .nav-link {
+    color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#sidebar .nav-link:hover {
+    background-color: var(--sidebar-hover-bg-color);
+    text-decoration: none;
+}
+
+#sidebar .nav-link.active {
+    background-color: var(--link-active-bg-color);
+    color: white;
+}
+
+#sidebar .mt-auto {
+    align-self: start; /* Aligns the links to the start of the flex container */
+    width: 100%; /* Ensures the links take full width of the sidebar */
+}
+
+#sidebar .mt-auto .nav-link {
+    padding: 8px 15px; /* Adjust padding or keep it consistent as needed */
+    border-top: 1px solid var(--sidebar-link-color); /* Optional top border for separation */
+}
+
+/* Additional adjustments to ensure consistent styling */
+#sidebar .mt-auto a {
+    display: block;
+    color: var(--sidebar-link-color);
+    transition: color 0.2s ease-in-out;
+}
+
+#sidebar .mt-auto a:hover {
+    color: var(--sidebar-hover-link-color);
+}
+
+#sidebar.collapsed {
+    width: 0;
+    min-width: 0;
+}
+
+#sidebar.collapsed .resizer-handle {
+    display: none;
+}
+
+.resizer-handle {
+    height: 100%;  /* Covers the full height of the parent, i.e., the sidebar */
+    width: 10px;   /* Sufficient width to grab easily */
+    position: absolute;
+    right: 0;      /* Positioned right on the edge */
+    top: 0;        /* Starts from the top to cover the whole height */
+    cursor: ew-resize;
+    z-index: 9999; /* Make sure it's above all other elements */
+}
+
+.resizer-handle:hover {
+    background-color: rgba(100, 100, 100, 0.5); /* Light visual feedback */
+}
+
+/* Focus Styles for Interactive Elements */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Responsive Adjustments for Sidebar */
+@media (max-width: 576px) {
+    #sidebar {
+        width: 100%; // Ensures full width on small screens
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    #sidebar {
+        width: 30%; // Example for slightly larger screens
+    }
+}
+
+@media (min-width: 769px) {
+    #sidebar {
+        width: 25%;
+    }
+}
+
+@media (min-width: 992px) {
+    #sidebar {
+        width: 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    #sidebar {
+        width: 16.66666667%;
+    }
+}
+
+
+
