@@ -18,7 +18,7 @@
 /* Basic HTML and Body Styles */
 html, body {
     height: 100%;
-    font-size: 14px; /* Default font size */
+    font-size: 14px; 
     position: relative;
     min-height: 100%;
 }
@@ -49,12 +49,12 @@ html, body {
     height: 100vh;
     padding: 1rem;
     display: flex;
-    flex-direction: column; /* Ensures flex layout to push links to the bottom */
-    position: relative; /* Ensures the resizer handle can be absolutely positioned */
-    resize: horizontal; /* Allows horizontal resizing */
-    overflow: auto; /* Keeps the content scrollable if it overflows */
-    max-width: 100%; /* Limits resizing to not exceed the viewport width */
-    min-width: 150px; /* Minimum width to ensure usability */
+    flex-direction: column; 
+    position: relative;
+    resize: horizontal; 
+    overflow: auto;
+    max-width: 100%; 
+    min-width: 150px;
 }
 
 #sidebar .nav-link {
@@ -74,16 +74,16 @@ html, body {
 }
 
 #sidebar .mt-auto {
-    align-self: start; /* Aligns the links to the start of the flex container */
-    width: 100%; /* Ensures the links take full width of the sidebar */
+    align-self: start;
+    width: 100%;
 }
 
 #sidebar .mt-auto .nav-link {
-    padding: 8px 15px; /* Adjust padding or keep it consistent as needed */
-    border-top: 1px solid var(--sidebar-link-color); /* Optional top border for separation */
+    padding: 8px 15px; 
+    border-top: 1px solid var(--sidebar-link-color);
 }
 
-/* Additional adjustments to ensure consistent styling */
+
 #sidebar .mt-auto a {
     display: block;
     color: var(--sidebar-link-color);
@@ -104,25 +104,25 @@ html, body {
 }
 
 .resizer-handle {
-    height: 100%;  /* Covers the full height of the parent, i.e., the sidebar */
-    width: 10px;   /* Sufficient width to grab easily */
+    height: 100%; 
+    width: 10px; 
     position: absolute;
-    right: 0;      /* Positioned right on the edge */
-    top: 0;        /* Starts from the top to cover the whole height */
+    right: 0;    
+    top: 0;       
     cursor: ew-resize;
-    z-index: 9999; /* Make sure it's above all other elements */
+    z-index: 9999; 
 }
 
 .resizer-handle:hover {
-    background-color: rgba(100, 100, 100, 0.5); /* Light visual feedback */
+    background-color: rgba(100, 100, 100, 0.5); 
 }
 
-/* Focus Styles for Interactive Elements */
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-/* Responsive Adjustments for Sidebar */
+/* Sidebar responsive design elements */
 @media (max-width: 576px) {
     #sidebar {
         width: 100%; // Ensures full width on small screens

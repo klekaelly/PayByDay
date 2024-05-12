@@ -13,7 +13,7 @@
 
     // Add double-click event to reset the sidebar width
     resizer.addEventListener('dblclick', function() {
-        sidebar.style.width = ''; // Resets to default, allowing CSS to control the layout
+        sidebar.style.width = '';
     });
 
     function resize(e) {
