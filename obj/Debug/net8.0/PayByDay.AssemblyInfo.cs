@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PayByDay")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76c290f49079052ee5651b5a61f7c7d1a82d4da7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56e8fae9a65c290c415f3184a364adbab8a15242")]
 [assembly: System.Reflection.AssemblyProductAttribute("PayByDay")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PayByDay")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

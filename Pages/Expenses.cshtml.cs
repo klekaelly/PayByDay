@@ -5,83 +5,61 @@ using PayByDay.Data;
 using PayByDay.Models;
 using System.Security.Claims;
 
-namespace PayByDay.Pages;
-
-public class Expenses : PageModel
+namespace PayByDay.Pages
 {
-    private readonly ApplicationDbContext _context;
-
-    public List<Expense> Expenses1 { get; set; } = new List<Expense>();
-
-    [BindProperty] public Expense NewExpense { get; set; }
-
-    public Expenses(ApplicationDbContext context)
+    public class Expenses : PageModel
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public async Task OnGetAsync()
-    {
-        Expenses1 = await _context.Expenses.ToListAsync();
-    }
+        public List<Expense> Expenses1 { get; set; } = new List<Expense>();
 
-    public async Task<IActionResult> OnPostAsync()
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        if (string.IsNullOrEmpty(userId))
+        [BindProperty] public Expense NewExpense { get; set; }
+
+        public Expenses(ApplicationDbContext context)
         {
-            ModelState.AddModelError(string.Empty, "User ID is null or empty.");
-            return Page();
+            _context = context;
         }
 
-        NewExpense.OwnerId = userId;
-
-        ModelState.Clear(); // Clear existing model state errors
-        TryValidateModel(NewExpense);
-
-        if (!ModelState.IsValid)
+        public async Task OnGetAsync()
         {
-            return Page();
+            Expenses1 = await _context.Expenses.ToListAsync();
         }
 
-        _context.Expenses.Add(NewExpense);
-        await _context.SaveChangesAsync();
-
-        return RedirectToPage();
-    }
-
-    public async Task<IActionResult> OnPostDeleteAsync(int id)
-    {
-        var expense = await _context.Expenses.FindAsync(id);
-        if (expense != null)
+        public async Task<IActionResult> OnPostAsync()
         {
-            _context.Expenses.Remove(expense);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                ModelState.AddModelError(string.Empty, "User ID is null or empty.");
+                return Page();
+            }
+
+            NewExpense.OwnerId = userId;
+
+            ModelState.Clear(); // Clear existing model state errors
+            TryValidateModel(NewExpense);
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Expenses.Add(NewExpense);
             await _context.SaveChangesAsync();
+
+            return RedirectToPage();
         }
 
-        return RedirectToPage();
-    }
-
-    public async Task<IActionResult> OnPostEditExpenseAsync([FromBody] Expense expense)
-    {
-        if (!ModelState.IsValid)
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
-            return BadRequest();
+            var expense = await _context.Expenses.FindAsync(id);
+            if (expense != null)
+            {
+                _context.Expenses.Remove(expense);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
         }
-
-        var existingExpense = await _context.Expenses.FindAsync(expense.Id);
-        if (existingExpense == null)
-        {
-            return NotFound();
-        }
-
-        existingExpense.Name = expense.Name;
-        existingExpense.Date = expense.Date;
-        existingExpense.Amount = expense.Amount;
-
-        _context.Expenses.Update(existingExpense);
-        await _context.SaveChangesAsync();
-
-        return new JsonResult(existingExpense);
     }
 }

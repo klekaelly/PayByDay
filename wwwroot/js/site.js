@@ -1,4 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
+    // Sidebar resizer code
     const sidebar = document.getElementById('sidebar');
     const resizer = document.createElement('div');
     resizer.className = 'resizer-handle';
@@ -83,5 +84,16 @@
                 alert('Failed to save changes. Please try again.');
             }
         });
+    });
+
+    // Bootstrap tab initialization code
+    var triggerTabList = [].slice.call(document.querySelectorAll('#tabs button'))
+    triggerTabList.forEach(function(triggerEl) {
+        var tabTrigger = new bootstrap.Tab(triggerEl)
+
+        triggerEl.addEventListener('click', function(event) {
+            event.preventDefault()
+            tabTrigger.show()
+        })
     });
 });
